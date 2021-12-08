@@ -9,7 +9,7 @@
 :bookmark:The ZhiyuBlog that is designed to write some blogs by Java Programming Language for beginner. :rocket:一个JAVA学习型博客项目
 
 技术选型：  
-
+  
 | 前端技术选型 |               |
 | Semantic UI | 2.4.1         |
 | ----------- | ------------- |
