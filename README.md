@@ -8,12 +8,11 @@
 
 :bookmark:The ZhiyuBlog that is designed to write some blogs by Java Programming Language for beginner. :rocket:一个JAVA学习型博客项目
 
-技术合集
-
-| 前端技术选型 ||
+技术选型：
+| 前端技术选型 |               |
 | Semantic UI | 2.4.1         |
 | ----------- | ------------- |
-| 后端技术选型 ||
+| 后端技术选型 |               |
 | Spring Boot | 2.2.5.RELEASE |
 | Shiro       | 1.4.0         |
 | MySQL       | 5.1.47        |
