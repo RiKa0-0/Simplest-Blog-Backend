@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhiyucs.blog.db.mapper.BlogMapper">
+    <select id="findBlogTags" resultType="cn.zhiyucs.blog.db.pojo.Tag" parameterType="Integer">
+        SELECT t.`id`,
+               t.`name`
+        FROM t_blog b
+                 RIGHT JOIN t_blog_tags bt ON b.id = bt.tags_id
+                 INNER JOIN t_tag t ON t.id = bt.tags_id
+        WHERE bt.blogs_id = #{blogId}
+    </select>
+
+    <select id="findDisplayInfoById" resultType="cn.zhiyucs.blog.db.pojo.Blog" parameterType="Integer">
+        SELECT description,
+               picture,
+               update_time,
+               views,
+               title
+        FROM t_blog t
+        WHERE t.id = #{blogId}
+    </select>
+
+</mapper>
