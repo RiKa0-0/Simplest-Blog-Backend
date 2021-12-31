@@ -4,7 +4,6 @@ import cn.zhiyucs.blog.db.mapper.CommentMapper;
 import cn.zhiyucs.blog.db.pojo.Comment;
 import cn.zhiyucs.blog.service.ICommentService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +19,10 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     private CommentMapper commentMapper;
 
     @Override
-    public List<Comment> getCommentList() {
+    public List<Comment> getCommentList(String getMethods) {
 
         QueryWrapper<Comment> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("create_time");
+        wrapper.orderByDesc(getMethods);
 
         HashMap<Long, Comment> map = new HashMap<>();
 

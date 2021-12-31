@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/blog")
@@ -21,11 +21,11 @@ public class BlogController {
     @Autowired
     private IBlogService blogService;
 
-    @GetMapping("/info")
-    @ApiOperation("分页获取博客的标题、描述、展示图片、创建日期、标签相关")
-    public R getBlogInformation(@RequestParam("id") Integer id) {
-        HashMap<String, Object> map = blogService.getBlogInformation(id);
-        return R.ok().put("blog", map);
+    @GetMapping("/details")
+    @ApiOperation("获取某一个博客的全部内容")
+    public R getBlogDetails(@RequestParam("id") Integer id) {
+        Blog blog = blogService.getBlogInformation(id);
+        return R.ok().put("data", blog);
     }
 
 
@@ -49,5 +49,12 @@ public class BlogController {
     public R getBlogsPageInfoOrderTime() {
         IPage<Blog> blogsPageArchives = blogService.getBlogsPageByTime(1, 10);
         return R.ok().put("data", blogsPageArchives);
+    }
+
+    @GetMapping("/getNew")
+    @ApiOperation("获取前五个最新的文章")
+    public R getNewBlogs() {
+        ArrayList<Blog> newBlogs = blogService.getNewBlogs();
+        return R.ok().put("data", newBlogs);
     }
 }

@@ -58,9 +58,6 @@ class BlogApiApplicationTests {
     void testSql() {
         List<Tag> blogTags = blogMapper.findBlogTags(1);
         blogTags.forEach(System.out::println);
-
-        Blog info = blogMapper.findDisplayInfoById(1);
-        System.out.println(info);
     }
 
     @Test
@@ -91,7 +88,7 @@ class BlogApiApplicationTests {
 
     @Test
     void testCommentList() {
-        List<Comment> commentList = commentService.getCommentList();
+        List<Comment> commentList = commentService.getCommentList("like_comment");
         System.out.println(commentList.size());
     }
 }

@@ -34,6 +34,8 @@ public class Comment {
 
     private Long parentCommentId;
 
+    private Integer likeComment;
+
     @TableField(exist = false)
     private List<Comment> replyComments = new ArrayList<>();
 }

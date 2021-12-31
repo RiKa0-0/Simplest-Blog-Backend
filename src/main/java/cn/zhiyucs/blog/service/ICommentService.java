@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface ICommentService extends IService<Comment> {
 
-    List<Comment> getCommentList();
+    /**
+     * 获得评论列表
+     * @param getMethods 获取方式：create_time || like_comment
+     * @return
+     */
+    List<Comment> getCommentList(String getMethods);
 }

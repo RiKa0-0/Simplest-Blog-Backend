@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,14 +21,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
     private BlogMapper blogMapper;
 
     @Override
-    public HashMap<String, Object> getBlogInformation(Integer id) {
-        HashMap<String, Object> map = new HashMap<>();
+    public Blog getBlogInformation(Integer id) {
         List<Tag> blogTags = blogMapper.findBlogTags(id);
-        Blog displayInfo = blogMapper.findDisplayInfoById(id);
-        displayInfo.setTags(blogTags);
-
-        map.put("info", displayInfo);
-        return map;
+        Blog blog = blogMapper.selectById(id);
+        blog.setTags(blogTags);
+        return blog;
     }
 
     /**
@@ -76,5 +73,15 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
             }
         }
         return archiveBlogPage;
+    }
+
+    @Override
+    public ArrayList<Blog> getNewBlogs() {
+        QueryWrapper<Blog> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "create_time", "title", "published")
+                .orderByDesc("create_time")
+                .last("limit 5");
+        ArrayList<Blog> blogs = new ArrayList<>(blogMapper.selectList(wrapper));
+        return blogs;
     }
 }

@@ -9,15 +9,4 @@
                  INNER JOIN t_tag t ON t.id = bt.tags_id
         WHERE bt.blogs_id = #{blogId}
     </select>
-
-    <select id="findDisplayInfoById" resultType="cn.zhiyucs.blog.db.pojo.Blog" parameterType="Integer">
-        SELECT description,
-               picture,
-               update_time,
-               views,
-               title
-        FROM t_blog t
-        WHERE t.id = #{blogId}
-    </select>
-
 </mapper>

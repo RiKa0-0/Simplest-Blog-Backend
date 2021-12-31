@@ -13,6 +13,4 @@ import java.util.List;
 public interface BlogMapper extends BaseMapper<Blog> {
 
     List<Tag> findBlogTags(@Param("blogId") Integer blogId);
-
-    Blog findDisplayInfoById(@Param("blogId") Integer blogId);
 }
